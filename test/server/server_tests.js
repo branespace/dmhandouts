@@ -8,11 +8,13 @@ var server = require(__dirname + '/../../server.js');
 var mongoose = require('mongoose');
 
 process.env.MONGO_URL = 'mongodb://localhost/dmhandouts_test';
+process.env.LOG_DIR = __dirname + '/logs';
 
 describe('server tests', function() {
 
   require(__dirname + '/socket_tests');
   require(__dirname + '/asset_routes_tests');
+  require(__dirname + '/user_tests');
 
   after(function(done) {
     mongoose.connection.db.dropDatabase(function(err) {

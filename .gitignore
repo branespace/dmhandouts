@@ -31,3 +31,6 @@ build
 
 # Database directory
 db
+
+# .env file
+.env

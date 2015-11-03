@@ -1,22 +1,16 @@
-'use strict';
+var Asset = require(__dirname + '/../../models/asset');
+var handleError = require(__dirname + '/../../lib/error_handler');
 
-var express = require('express');
-var jsonParser = require('body-parser').json();
-var Asset = require(__dirname + '/../models/asset');
-var handleError = require(__dirname + '/../lib/error_handler');
-
-var assetRouter = module.exports = exports = express.Router();
-
-assetRouter.get('/assets', function(req, res) {
+exports.get = function(req, res) {
   Asset.find({unlocked: true}, function(err, data) {
     if (err || !data) {
       return handleError.internalServer(err, res);
     }
     res.status(200).json(data);
   });
-});
+};
 
-assetRouter.get('/assets/:id', function(req, res) {
+exports.getAsset = function(req, res) {
   Asset.findOne({unlocked: true, _id: req.params.id}, function(err, data) {
     if (err) {
       return handleError.internalServer(err, res);
@@ -27,15 +21,16 @@ assetRouter.get('/assets/:id', function(req, res) {
     }
     res.status(200).json(data);
   });
-});
+};
 
-assetRouter.patch('/assets/:id', jsonParser, function(req, res) {
+exports.addComment = function(req, res) {
   Asset.findById(req.params.id, function(err, data) {
     if (err) { return handleError.internalServer(err, res); }
+    req.body.comment.username = req.user.username;
     data.comments.push(req.body.comment);
     data.save(function(err, data) {
       if (err) { return handleError.internalServer(err, res); }
       res.status(200).json(data);
     });
   });
-});
+};

@@ -7,10 +7,13 @@ var expect = chai.expect;
 var mongoose = require('mongoose');
 var serverURI = 'localhost:3000/api';
 var Asset = require(__dirname + '/../../models/asset');
+var User = require(__dirname + '/../../models/user');
 
 var assets = [];
 
 describe('asset routes', function() {
+  var token;
+
   before(function(done) {
     var newAsset = new Asset({
       name: 'Tomb of Horrors Entry',
@@ -22,6 +25,12 @@ describe('asset routes', function() {
         date: Date.now(),
         body: 'I\m excited!'
       }]
+    });
+    var newUser = new User({
+      username: 'assettestuser',
+      basic: {
+        username: 'assettestuser'
+      }
     });
     newAsset.save(function(err, data) {
       assets.push(data);
@@ -38,7 +47,14 @@ describe('asset routes', function() {
       });
       newAsset.save(function(err, data) {
         assets.push(data);
-        done();
+        newUser.generateHash('pwd', function(err, hash) {
+          newUser.save(function(err, data) {
+            newUser.generateToken(function(err, newToken) {
+              token = newToken;
+              done();
+            });
+          });
+        });
       });
     });
   });
@@ -46,6 +62,7 @@ describe('asset routes', function() {
   it('should return a list of unlocked assets', function(done) {
     chai.request(serverURI)
       .get('/assets')
+      .set('token', token)
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.status).to.eql(200);
@@ -58,6 +75,7 @@ describe('asset routes', function() {
   it('should return an unlocked asset by id', function(done) {
     chai.request(serverURI)
       .get('/assets/' + assets[0]._id)
+      .set('token', token)
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.status).to.eql(200);
@@ -69,6 +87,7 @@ describe('asset routes', function() {
   it('should not return a locked asset by id', function(done) {
     chai.request(serverURI)
       .get('/assets/' + assets[1]._id)
+      .set('token', token)
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.status).to.eql(404);
@@ -79,6 +98,7 @@ describe('asset routes', function() {
   it('should accept new comments', function(done) {
     chai.request(serverURI)
       .patch('/assets/' + assets[0]._id)
+      .set('token', token)
       .send({comment: {
         user: 'elflord',
         date: Date.now(),
