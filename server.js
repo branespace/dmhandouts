@@ -4,6 +4,9 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 
+var io = require('socket.io').listen(server);
+var socketServer = require(__dirname + '/sockets/base')(io);
+
 //Enable CORS middleware
 app.use(function(req, resp, next) {
   resp.header('Access-Control-Allow-Origin', '*');

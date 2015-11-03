@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
-var gulpmocha = require('gulp-mocha');
+var mocha = require('gulp-mocha');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
 var lintableFiles = ['!node_modules/*/**', '**/*.js'];
@@ -18,6 +18,12 @@ gulp.task('jscs', function() {
     .pipe(jscs.reporter());
 });
 
+gulp.task('servertests', function() {
+  return gulp.src('test/server/server_tests.js', {read: false})
+    .pipe(mocha({reporter: 'nyan'}));
+});
+
 gulp.task('lint', ['jshint', 'jscs']);
 gulp.task('build');
-gulp.task('default', ['lint']);
+gulp.task('tests', ['servertests']);
+gulp.task('default', ['lint', 'build', 'tests']);
