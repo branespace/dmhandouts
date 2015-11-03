@@ -17,7 +17,7 @@ exports.get = function(req, res) {
 exports.getAdventure = function(req, res) {
   var query = {unlocked: true, _id: req.params.id};
   if (req.user.admin) {
-    queru = {_id: req.params.id};
+    query = {_id: req.params.id};
   }
   Adventure.find(query, function(err, data) {
     if (err) {

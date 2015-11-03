@@ -5,6 +5,11 @@ var assetSchema = new mongoose.Schema({
   uri: String,
   adventure: String,
   unlocked: Boolean,
+  type: String,
+  coordinates: {
+    x: Number,
+    y: Number
+  },
   comments: [{
     user: String,
     date: Date,

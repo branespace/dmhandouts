@@ -14,6 +14,7 @@ describe('server tests', function() {
 
   require(__dirname + '/socket_tests');
   require(__dirname + '/asset_routes_tests');
+  require(__dirname + '/action_routes_tests');
   require(__dirname + '/user_tests');
   require(__dirname + '/adventure_tests');
 

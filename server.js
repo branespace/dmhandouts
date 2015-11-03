@@ -26,10 +26,12 @@ app.use(function(req, resp, next) {
 var assetRouter = require(__dirname + '/routes/asset_router');
 var userRouter = require(__dirname + '/routes/user_router');
 var adventureRouter = require(__dirname + '/routes/adventure_router');
+var actionRouter = require(__dirname + '/routes/action_router');
 
 app.use('/api', assetRouter);
 app.use('/api', userRouter);
 app.use('/api', adventureRouter);
+app.use('/api', actionRouter);
 app.use(express.static('build'));
 
 var port = process.env.PORT || 3000;
