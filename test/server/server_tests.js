@@ -12,6 +12,7 @@ process.env.MONGO_URL = 'mongodb://localhost/dmhandouts_test';
 describe('server tests', function() {
 
   require(__dirname + '/socket_tests');
+  require(__dirname + '/asset_routes_tests');
 
   after(function(done) {
     mongoose.connection.db.dropDatabase(function(err) {

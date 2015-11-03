@@ -4,6 +4,7 @@ var assetSchema = new mongoose.Schema({
   name: String,
   uri: String,
   adventure: String,
+  unlocked: Boolean,
   comments: [{
     user: String,
     date: Date,

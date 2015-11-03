@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/branespace/dmhandouts#readme",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "gulp": "^3.9.0",
     "gulp-jscs": "^3.0.2",

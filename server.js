@@ -20,6 +20,9 @@ app.use(function(req, resp, next) {
   next();
 });
 
+var assetRouter = require(__dirname + '/routes/asset_routes');
+
+app.use('/api', assetRouter);
 app.use(express.static('build'));
 
 var port = process.env.PORT || 3000;

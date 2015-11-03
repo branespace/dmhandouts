@@ -20,7 +20,7 @@ gulp.task('jscs', function() {
 
 gulp.task('servertests', function() {
   return gulp.src('test/server/server_tests.js', {read: false})
-    .pipe(mocha({reporter: 'nyan'}));
+    .pipe(mocha({reporter: 'spec'}));
 });
 
 gulp.task('lint', ['jshint', 'jscs']);
