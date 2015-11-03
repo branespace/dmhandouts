@@ -19,5 +19,5 @@ gulp.task('jscs', function() {
 });
 
 gulp.task('lint', ['jshint', 'jscs']);
-
+gulp.task('build');
 gulp.task('default', ['lint']);
