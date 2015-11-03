@@ -7,6 +7,10 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var socketServer = require(__dirname + '/sockets/base')(io);
 
+var mongoose = require('mongoose');
+mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGO_URL ||
+                    'mongodb://localhost/dmhandouts_dev');
+
 //Enable CORS middleware
 app.use(function(req, resp, next) {
   resp.header('Access-Control-Allow-Origin', '*');
@@ -29,5 +33,6 @@ server.listen(port, iface, function() {
 module.exports = exports = server;
 
 server.shutdown = function() {
+  mongoose.disconnect();
   server.close();
 };
