@@ -7,10 +7,10 @@ var eatAuth = require(__dirname + '/../lib/eat_auth');
 
 var adventureRoutes = require(__dirname + '/adventure/adventure_routes');
 
-adventureRouter.get('/adventures', eatAuth, adventureRoutes.get);
+adventureRouter.get('/adventure', eatAuth, adventureRoutes.get);
 
-adventureRouter.get('/adventures/:id', eatAuth,
+adventureRouter.get('/adventure/:id', eatAuth,
     adventureRoutes.getAdventure);
 
-adventureRouter.patch('/adventures/:id', jsonParser, eatAuth,
+adventureRouter.patch('/adventure/:id', jsonParser, eatAuth,
     adventureRoutes.updateAdventure);

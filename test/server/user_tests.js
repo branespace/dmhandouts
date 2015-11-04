@@ -54,6 +54,17 @@ describe('user routes', function() {
       });
     });
   });
+  it('should return a username', function(done) {
+    chai.request(serverURI)
+      .get('/username')
+      .set('token', token)
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        expect(res.status).to.eql(200);
+        expect(res.body.username).to.eql('DM');
+        done();
+      });
+  });
   describe('errors', function() {
     var userRoutes = require(__dirname + '/../../routes/user/user_routes');
     it('should decline incomplete signup requests', function() {

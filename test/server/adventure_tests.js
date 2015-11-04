@@ -48,7 +48,7 @@ describe('adventure routes', function() {
 
   it('should return a list of unlocked adventures', function(done) {
     chai.request(serverURI)
-      .get('/adventures')
+      .get('/adventure')
       .set('token', token)
       .end(function(err, res) {
         expect(err).to.eql(null);
@@ -61,7 +61,7 @@ describe('adventure routes', function() {
 
   it('should return an unlocked adventure by id', function(done) {
     chai.request(serverURI)
-      .get('/adventures/' + adventures[0]._id)
+      .get('/adventure/' + adventures[0]._id)
       .set('token', token)
       .end(function(err, res) {
         expect(err).to.eql(null);
@@ -73,7 +73,7 @@ describe('adventure routes', function() {
 
   it('should accept renaming', function(done) {
     chai.request(serverURI)
-      .patch('/adventures/' + adventures[1]._id)
+      .patch('/adventure/' + adventures[1]._id)
       .set('token', token)
       .send({title: 'Temple of Elemental Evil'})
       .end(function(err, res) {

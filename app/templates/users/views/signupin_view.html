@@ -1,0 +1,29 @@
+<section>
+  <h1>{{h1TextA}}</h1>
+  <h3 data-ng-if="error" data-ng-bind="error"></h3>
+  <form name="userForm" data-ng-submit="send(user)">
+    <label>
+      Username
+      <input type="text" data-ng-model="user.username">
+    </label>
+    <label data-ng-if="signup">
+      Email
+      <input type="text" data-ng-model="user.email">
+    </label>
+    <label>
+      Password
+      <input type="password" data-ng-model="user.password">
+    </label>
+    <label data-ng-if="signup">
+      <p data-ng-if="!passwordMatch(user)">Passwords do not match</p>
+      Retype Password
+      <input type="password" data-ng-model="user.confirmation">
+    </label>
+    <label data-ng-if="signup">
+      Signup Code
+      <input type="text" data-ng-model="user.signupCode">
+    </label>
+    <button type="submit" data-ng-disabled="disableButton(user)">{{buttonText}}</button>
+    <button type="button" data-ng-click="switchForm()">{{switchButtonText}}</button>
+  </form>
+</section>
