@@ -1,0 +1,11 @@
+<section data-ng-init="getAll()">
+  <h1>{{adventure.title}}</h1>
+  <a href data-ng-click="showMap()">Map</a>
+  <div class="asset-container">
+    <div class="asset-item" data-ng-repeat="asset in assets"
+         data-ng-click="loadAsset(asset)">
+      <h3><strong>Name:</strong> {{asset.name}}</h3>
+      <img src="{{asset.thumburi}}" /> 
+    </div>
+  </div>
+</section>

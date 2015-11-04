@@ -24,7 +24,9 @@ module.exports = function(app) {
           $http.post('/api/signup', user)
             .then(function(res) {
               $cookies.put('token', res.data.token);
-              $scope.getUserName();
+              $scope.getUserName(function(err) {
+                $scope.error = err;
+              });
               $location.path('/user');
             }, function(res) {
               if (res.status === 401) {

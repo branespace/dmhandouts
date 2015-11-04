@@ -1,0 +1,16 @@
+<section data-ng-init="getAll()">
+  <div>
+    <h1>Welcome back, {{username}}</h1>
+  </div>
+  <div>
+    <h3>Select an Adventure:</h3>
+    <div class="adventure-container">
+      <div class="adventure-item" data-ng-repeat="adventure in adventures"
+           data-ng-click="loadAdventure(adventure)">
+        <img src="{{adventure.image}}" class="adventure-image" />
+        <h2>{{adventure.title}}</h2>
+        <p>{{adventure.description}}</p>
+      </div>
+    </div>
+  </div>
+</section>

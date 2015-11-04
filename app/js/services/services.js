@@ -1,3 +1,3 @@
 module.exports = function(app) {
-  require('./logout.js')(app);
+  require('./rest_service')(app);
 };

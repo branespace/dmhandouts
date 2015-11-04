@@ -23,7 +23,9 @@ module.exports = function(app) {
           })
           .then(function(res) {
             $cookies.put('token', res.data.token);
-            $scope.getUserName();
+            $scope.getUserName(function(res) {
+              $scope.error = res;
+            });
             $location.path('/user');
           }, function(res) {
             if (res.status === 500) {

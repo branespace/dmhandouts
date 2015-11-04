@@ -15,7 +15,7 @@ module.exports = function(app) {
     $scope.getUserName = function(callback) {
       var token = $cookies.get('token');
       if (!(token && token.length)) {
-        callback(new Error('not logged in'));
+        callback('Not logged in');
       }
       $http({
         method: 'GET',
@@ -27,7 +27,7 @@ module.exports = function(app) {
       .then(function(res) {
         $scope.username = res.data.username;
       }, function(res) {
-        callback(res);
+        callback('Server Error.  Please try logging in');
       });
     };
   }]);
