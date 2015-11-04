@@ -1,4 +1,4 @@
-# dmhandouts
+# dmhandouts ![TravisCI Build Status](https://travis-ci.org/branespace/dmhandouts.svg?branch=master)
 
 A simple project to solve a problem that absolutely no one ever has.
 
