@@ -2,7 +2,8 @@ var Asset = require(__dirname + '/../../models/asset');
 var handleError = require(__dirname + '/../../lib/error_handler');
 
 exports.get = function(req, res) {
-  Asset.find({unlocked: true}, function(err, data) {
+  Asset.find({unlocked: true, adventure: req.headers.adventure},
+        function(err, data) {
     if (err || !data) {
       return handleError.internalServer(err, res);
     }

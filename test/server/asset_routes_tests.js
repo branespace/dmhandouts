@@ -63,6 +63,7 @@ describe('asset routes', function() {
     chai.request(serverURI)
       .get('/assets')
       .set('token', token)
+      .set('adventure', 'Tomb of Horrors')
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.status).to.eql(200);
@@ -75,6 +76,7 @@ describe('asset routes', function() {
   it('should return an unlocked asset by id', function(done) {
     chai.request(serverURI)
       .get('/assets/' + assets[0]._id)
+      .set('adventure', 'Tomb of Horrors')
       .set('token', token)
       .end(function(err, res) {
         expect(err).to.eql(null);
@@ -87,6 +89,7 @@ describe('asset routes', function() {
   it('should not return a locked asset by id', function(done) {
     chai.request(serverURI)
       .get('/assets/' + assets[1]._id)
+      .set('adventure', 'White Plume Mountain')
       .set('token', token)
       .end(function(err, res) {
         expect(err).to.eql(null);
