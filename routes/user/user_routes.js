@@ -55,3 +55,7 @@ exports.changePassword = function(req, res) {
     });
   });
 };
+
+exports.getUserName = function(req, res) {
+  res.status(200).json({username: req.user.username});
+};

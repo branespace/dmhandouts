@@ -9,3 +9,4 @@ var userRouter = module.exports = exports = express.Router();
 userRouter.post('/signup', jsonParser, userRoutes.signup);
 userRouter.get('/signin', httpBasic, userRoutes.signin);
 userRouter.patch('/user', jsonParser, eatAuth, userRoutes.changePassword);
+userRouter.get('/username', eatAuth, userRoutes.getUserName);
