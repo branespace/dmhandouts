@@ -8,7 +8,7 @@ var sass = require('gulp-sass');
 var webpack = require('webpack-stream');
 var Karma = require('karma').Server;
 
-var lintableFiles = ['!node_modules/*/**', '**/*.js'];
+var lintableFiles = ['!node_modules/*/**', '!**/*bundle.js', '**/*.js'];
 var staticFiles = ['app/**/*.html',
                    'app/**/*.svg',
                    'app/**/*.jpg',
