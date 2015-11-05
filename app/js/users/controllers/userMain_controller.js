@@ -10,7 +10,7 @@ module.exports = function(app) {
         $http.defaults.headers.common.token = token;
         $scope.adventures = $scope.adventures || [];
 
-        var adventureResource = Resource('adventure');
+        var adventureResource = Resource('adventures');
 
         $scope.getAll = function() {
           adventureResource.getAll(function(err, data) {
