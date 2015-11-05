@@ -3,12 +3,12 @@
 var chai = require('chai');
 var expect = chai.expect;
 
-var server = require(__dirname + '/../../server.js');
-
 var mongoose = require('mongoose');
 
 process.env.MONGO_URL = 'mongodb://localhost/dmhandouts_test';
 process.env.LOG_DIR = __dirname + '/logs';
+
+var server = require(__dirname + '/../../server.js');
 
 describe('server tests', function() {
 

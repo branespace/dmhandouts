@@ -20,6 +20,10 @@ module.exports = function(app) {
       $http.delete('/api/' + this.resourceName + '/' + resource._id)
         .then(handleSuccess(callback), handleFailure(callback));
     };
+    Resource.prototype.get = function(id, callback) {
+      $http.get('/api/' + this.resourceName + '/' + id)
+        .then(handleSuccess(callback), handleFailure(callback));
+    };
 
     return function(resourceName) {
       return new Resource(resourceName);

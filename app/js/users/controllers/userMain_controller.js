@@ -1,7 +1,7 @@
 module.exports = function(app) {
   app.controller('UserMainController', ['$scope', 'Resource', '$cookies',
-      '$http', '$location', '$rootScope',
-      function($scope, Resource, $cookies, $http, $location, $rootScope) {
+      '$http', '$location', 'Persist',
+      function($scope, Resource, $cookies, $http, $location, Persist) {
         var token = $cookies.get('token') ;
         if (!(token && token.length)) {
           $location.path('/signup');
@@ -24,7 +24,7 @@ module.exports = function(app) {
 
         $scope.loadAdventure = function(adventure) {
           $http.defaults.headers.common.adventure = adventure.title;
-          $rootScope.adventure = adventure;
+          Persist.set('adventure', adventure);
           $location.path('/adventure');
         };
 

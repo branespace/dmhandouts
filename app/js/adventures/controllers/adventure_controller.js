@@ -1,7 +1,7 @@
 module.exports = function(app) {
-  app.controller('AdventureController', ['$scope', '$rootScope', '$location',
-      'Resource', function($scope, $rootScope, $location, Resource) {
-        var adventure = $rootScope.adventure;
+  app.controller('AdventureController', ['$scope', 'Persist', '$location',
+      'Resource', function($scope, Persist, $location, Resource) {
+        var adventure = Persist.get('adventure');
         $scope.assets = [];
 
         var assetResource = Resource('assets');
@@ -20,7 +20,7 @@ module.exports = function(app) {
         };
 
         $scope.loadAsset = function(asset) {
-          $rootScope.asset = asset;
+          Persist.set('asset', asset);
           $location.path('/asset');
         };
 

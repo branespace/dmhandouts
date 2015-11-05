@@ -20,6 +20,10 @@ module.exports = function(dmhandouts) {
         templateUrl: 'templates/adventures/views/adventure_view.html',
         controller: 'AdventureController'
       })
+      .when('/asset', {
+        templateUrl: 'templates/assets/views/asset_view.html',
+        controller: 'AssetController'
+      })
       .otherwise({
         redirectTo: '/signup'
       });

@@ -1,0 +1,13 @@
+<section data-ng-init="loadAsset()">
+  <a href data-ng-click="back()">&lt;-Back</a>
+  <div class="asset-view-container">
+    <h1>{{asset.name}}</h1>
+    <img src="{{asset.uri}}" />
+    <p>{{image.description}}</p>
+  </div>
+  <div class="asset-comment-container">
+    <div class="asset-comment-item" data-ng-repeat="comment in comments">
+      <p>{{comment.body}}<br />-<em>{{comment.user}}</em>{{comment.date}}</p>
+    </div>
+  </div>
+</section>
